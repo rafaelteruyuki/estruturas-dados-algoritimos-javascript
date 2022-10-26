@@ -2,7 +2,32 @@
   "name": "estruturas-dados-algoritimos-javascript",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/rafaelteruyuki/estruturas-dados-algoritimos-javascript.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelteruyuki/estruturas-dados-algoritimos-javascript.git"
+  },
   "author": "Rafael Teruyuki <rafaelteruyuki08@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.5.0",
+    "lite-server": "^2.6.1",
+    "typescript": "^4.8.4"
+  },
+  "bugs": {
+    "url": "https://github.com/rafaelteruyuki/estruturas-dados-algoritimos-javascript/issues"
+  },
+  "homepage": "https://github.com/rafaelteruyuki/estruturas-dados-algoritimos-javascript#readme",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc -w",
+    "serve-node": "nodemon app/dist/js/app.js",
+    "serve-web": "lite-server --baseDir=app",
+    "start-node": "concurrently \"npm run watch\" \"npm run serve-node\"",
+    "start-web": "concurrently \"npm run watch\" \"npm run serve-web\""
+  },
+  "keywords": [],
+  "description": "",
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  }
 }
