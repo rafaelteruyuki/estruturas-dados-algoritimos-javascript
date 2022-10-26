@@ -1,0 +1,8 @@
+{
+  "name": "estruturas-dados-algoritimos-javascript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/rafaelteruyuki/estruturas-dados-algoritimos-javascript.git",
+  "author": "Rafael Teruyuki <rafaelteruyuki08@gmail.com>",
+  "license": "MIT"
+}
