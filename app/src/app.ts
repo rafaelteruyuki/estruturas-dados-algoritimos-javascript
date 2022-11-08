@@ -5,4 +5,4 @@ linkedList.push(10);
 linkedList.push(15);
 linkedList.push(20);
 
-console.log(linkedList);
+console.log('TESTE DO', linkedList);
