@@ -1,7 +1,7 @@
 {
   "name": "estruturas-dados-algoritimos-javascript",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rafaelteruyuki/estruturas-dados-algoritimos-javascript.git"
