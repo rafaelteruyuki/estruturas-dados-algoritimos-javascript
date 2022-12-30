@@ -21,6 +21,19 @@ describe('LinkedList', () => {
   it('[G] getHead should return head of the list', () => {
     expect(linkedList.getHead).not.toBe(undefined);
   });
+
+  it('[G] isEmpty should return true if the list is empty otherwise false', () => {
+    const list = new LinkedList<string>();
+    expect(list.isEmpty).toBe(true);
+
+    list.push('Name');
+    expect(list.isEmpty).toBe(false);
+  });
+
+  it('[G] toString should return the string visualization of the list', () => {
+    const STRING = `${ELEMENT01}, ${ELEMENT02}, ${ELEMENT03}`;
+    expect(linkedList.toString).toBe(STRING)
+  });
   
   it(`#${LinkedList.prototype.push.name} should push an element into the list`, () => {
     const ELEMENT = 25;
@@ -70,5 +83,12 @@ describe('LinkedList', () => {
     linkedList.insert(ELEMENT, POSITION);
     expect(linkedList.size).toBe(4);
     expect(linkedList.getElementAt(POSITION)?.element).toBe(ELEMENT);
+  });
+
+  it(`#${LinkedList.prototype.indexOf.name} should return the index of a given element`, () => {
+    expect(linkedList.indexOf(ELEMENT01)).toBe(0);
+    expect(linkedList.indexOf(ELEMENT02)).toBe(1);
+    expect(linkedList.indexOf(ELEMENT03)).toBe(2);
+    expect(linkedList.indexOf(50)).toBe(-1);
   });
 });

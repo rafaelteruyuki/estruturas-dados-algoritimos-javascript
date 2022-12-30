@@ -4,7 +4,7 @@ import { defaultEquals } from "../util";
 export default class LinkedList<T> {
   private count: number;
   private head: Node<T> | undefined;
-  private equalsFn: (a: any, b: any) => boolean;
+  private equalsFn: (a: T, b: T) => boolean;
 
   constructor(equalsFn = defaultEquals<T>) {
     this.count = 0;
@@ -12,6 +12,7 @@ export default class LinkedList<T> {
   }
 
   /**
+   * @readonly
    * @returns The head of the list
   */
   public get getHead(): Node<T> | undefined {
@@ -19,10 +20,36 @@ export default class LinkedList<T> {
   }
 
   /**
+   * @readonly
    * @returns The size of the list
   */
   public get size(): number {
     return this.count;
+  }
+
+  /**
+   * @readonly
+   * @returns True if the list is empty False if it's not.
+  */
+  public get isEmpty(): boolean {
+    return this.size === 0;
+  }
+
+  /**
+   * @returns The string visualization of the list
+  */
+  public get toString(): string {
+    if(!this.head) return '';
+
+    let objString = `${this.head.element}`;
+    let current = this.head.next;
+
+    for(let i = 1; i < this.size && current; i++) {
+      objString += `, ${current.element}`;
+      current = current.next;
+    }
+    
+    return objString;
   }
 
   /**
@@ -86,8 +113,14 @@ export default class LinkedList<T> {
     return true;
   }
 
-
-  // public remove(element: T): void {}
+  /**
+   * @param element 
+   * @returns The element removed or undefined
+  */
+  public remove(element: T): T | undefined {
+    const index = this.indexOf(element);
+    return this.removeAt(index);
+  }
 
   /**
    * 
@@ -111,9 +144,21 @@ export default class LinkedList<T> {
     return current?.element;
   }
 
-  // public indexOf(element: T): number {}
+  /**
+   * 
+   * @param element 
+   * @returns The index of the given element. If not found returns -1.
+  */
+  public indexOf(element: T): number {
+    let current = this.head;
 
-  // public isEmpty(): boolean {}
+    for (let i = 0; i < this.count && current; i++) {
+      if(this.equalsFn(element, current.element)) {
+        return i;
+      }
+      current = current.next
+    }
 
-  // public toString(): string {}
+    return -1;
+  }
 }
