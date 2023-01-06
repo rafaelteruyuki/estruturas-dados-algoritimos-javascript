@@ -1,15 +1,11 @@
 import { Node } from './models/linked-list-models';
-import { defaultEquals } from "../util";
+import { defaultEquals, IEqualsFunction } from "../util";
 
 export default class LinkedList<T> {
-  private count: number;
-  private head: Node<T> | undefined;
-  private equalsFn: (a: T, b: T) => boolean;
-
-  constructor(equalsFn = defaultEquals<T>) {
-    this.count = 0;
-    this.equalsFn = equalsFn;
-  }
+  protected count = 0
+  protected head: Node<T> | undefined;
+  
+  constructor(protected equalsFn: IEqualsFunction<T> = defaultEquals) {}
 
   /**
    * @readonly
@@ -75,14 +71,14 @@ export default class LinkedList<T> {
 
   /**
    * 
-   * @param position 
-   * @returns The element at the received position
+   * @param index 
+   * @returns The element at the received index
   */
-  public getElementAt(position: number): Node<T> | undefined {
-    if(position < 0 || position > this.count) return undefined;
+  public getElementAt(index: number): Node<T> | undefined {
+    if(index < 0 || index > this.count) return undefined;
 
     let current = this.head;
-    for(let i = 0; i < position && current; i++) {
+    for(let i = 0; i < index && current; i++) {
       current = current.next;
     }
 
@@ -92,19 +88,19 @@ export default class LinkedList<T> {
   /**
    * 
    * @param element 
-   * @param position 
+   * @param index 
    * @returns True if success and False if fail
   */
-  public insert(element: T, position: number): boolean {
-    if(position < 0 || position > this.count) return false;
+  public insert(element: T, index: number): boolean {
+    if(index < 0 || index > this.count) return false;
 
     const node = new Node<T>(element);
-    if(position === 0) {
+    if(index === 0) {
       const current = this.head;
       node.next = current;
       this.head = node;
     } else {
-      const previous = this.getElementAt(position - 1);
+      const previous = this.getElementAt(index - 1);
       const current = previous?.next;
       node.next = current;
       previous!.next = node;
@@ -124,18 +120,18 @@ export default class LinkedList<T> {
 
   /**
    * 
-   * @param position 
+   * @param index 
    * @returns The element removed
    */
-  public removeAt(position: number): T | undefined {
-    if(position < 0 || position >= this.count) return undefined;
+  public removeAt(index: number): T | undefined {
+    if(index < 0 || index >= this.count) return undefined;
 
     let current = this.head;
 
-    if(position === 0) {
+    if(index === 0) {
       this.head = current?.next;
     } else {
-      const previous = this.getElementAt(position - 1);
+      const previous = this.getElementAt(index - 1);
       current = previous?.next;
       previous!.next = current?.next;
     }
