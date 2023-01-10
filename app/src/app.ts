@@ -1,9 +1,12 @@
-import LinkedList from "./data-structures/linked-list";
+import { DoublyLinkedList } from "./data-structures/doubly-linked-list";
 
-const linkedList = new LinkedList<number>();
-linkedList.push(10);
-linkedList.push(15);
-linkedList.push(20);
+const doublyLinkedList = new DoublyLinkedList<number>();
+console.log('doublyLinkedList.getHead', doublyLinkedList.getHead);
 
-console.log(linkedList.getElementAt(2));
-console.log(linkedList.toString);
+doublyLinkedList.insert(2, 0);
+console.log('doublyLinkedList.getHead', doublyLinkedList.getHead);
+
+doublyLinkedList.insert(1, 0);
+console.log('doublyLinkedList.getHead', doublyLinkedList.getHead);
+console.log('doublyLinkedList.getHead.next', doublyLinkedList.getHead.next);
+console.log('doublyLinkedList.getHead.prev', doublyLinkedList.getHead.prev);

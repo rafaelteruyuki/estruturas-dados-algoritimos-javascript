@@ -10,6 +10,10 @@ export class DoublyLinkedList<T> extends LinkedList<T> {
     super(equalsFn);
   }
 
+  public get getHead(): DoublyNode<T> | undefined {
+    return this.head;
+  }
+
   public insert(element: T, index: number): boolean {
     if(index < 0 || index > this.count) return false;
 
@@ -25,6 +29,21 @@ export class DoublyLinkedList<T> extends LinkedList<T> {
         this.head.prev = node;
         this.head = node;
       }
+    } else if(index === this.count) {
+      current = this.tail;
+      current.next = node;
+      node.prev = current;
+      this.tail = node;
+    } else {
+      const previous = this.getElementAt(index - 1);
+      current = previous.next;
+      node.next = current;
+      previous.next = node;
+
+      current.prev = node;
+      node.prev = previous;
     }
+    this.count++;
+    return true;
   }
 }
